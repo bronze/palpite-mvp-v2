@@ -1,11 +1,13 @@
-import { createClient } from '@/lib/supabase/server'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { signOut } from '@/server/actions/auth'
+import {createClient} from "@/lib/supabase/server";
+import {Button} from "@/components/ui/button";
+import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
+import {signOut} from "@/server/actions/auth";
 
 export default async function DashboardPage() {
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
+  const supabase = await createClient();
+  const {
+    data: {user},
+  } = await supabase.auth.getUser();
 
   return (
     <div className="container mx-auto py-8">
@@ -17,20 +19,16 @@ export default async function DashboardPage() {
           </Button>
         </form>
       </div>
-      
+
       <Card>
         <CardHeader>
           <CardTitle>Welcome!</CardTitle>
-          <CardDescription>
-            You are signed in as {user?.email}
-          </CardDescription>
+          <CardDescription>You are signed in as {user?.email}</CardDescription>
         </CardHeader>
         <CardContent>
-          <p className="text-sm text-muted-foreground">
-            User ID: {user?.id}
-          </p>
+          <p className="text-sm text-muted-foreground">User ID: {user?.id}</p>
         </CardContent>
       </Card>
     </div>
-  )
+  );
 }
